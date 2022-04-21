@@ -1,0 +1,32 @@
+.right-side{
+	background-color: #F6F8FB; /*Цвет*/
+	position: fixed; /*Позиция относительно экрана*/
+	top: 0;
+	left: 41.66%;
+	height: 100vh; /*Высота на весь экран*/
+}
+.left-side{
+	background-color: #14C9C9; /*Цвет*/
+	position: fixed; /*Позиция относительно экрана*/
+	top: 0;
+	left: 0;
+	height: 100vh; /*Высота на весь экран*/
+}
+.btn-reg{
+	border-color: #F24F8D; /*Цвет*/
+	position: relative; /*Позиция относительно родителя*/
+	top: 30%; /*Отступ сверху*/
+	left: 40%; /*Отступ слева*/
+}
+.btn-out{
+	border-color: #489E9E;
+}
+.btn-submit{
+	border: none;
+	background-color: #FFFFFF;
+}
+footer{
+	flex: 0 0 auto;
+	padding: 1rem;
+	background: #e6ffe6;
+}

@@ -30,3 +30,7 @@ footer{
 	padding: 1rem;
 	background: #e6ffe6;
 }
+.row {
+	margin-right: 0;
+	margin-left: 0;
+}

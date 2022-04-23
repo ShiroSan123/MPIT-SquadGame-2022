@@ -6,7 +6,7 @@
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ShiroSan123&layout=compact)](https://github.com/ShiroSan123/github-readme-stats)
 
 # MPIT SquadGame 2022
-Наш проект [Pay to study](«Classified») решает проблему сбора средств и ресурсов на реализацию учебных курсов у создателей курсов, зрителей с помощью возможность инвестировать в разные учебные курсы и библиотека курсов
+Наш проект [Lectady](«Classified») решает проблему сбора средств и ресурсов на реализацию учебных курсов у создателей курсов, зрителей с помощью возможность инвестировать в разные учебные курсы и библиотека курсов
 Инструменты: SublimeText, Visual Studio Code, Spotify
 ***
 Плагины

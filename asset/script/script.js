@@ -9,4 +9,7 @@ $(function() {
 	$('#toTop').click(function() {
 		$('body,html').animate({scrollTop:0},0);
 	});
+	$('.carousel').carousel({
+  interval: 100
+})
 });

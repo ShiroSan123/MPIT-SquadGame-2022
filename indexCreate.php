@@ -2,10 +2,12 @@
 session_start();
 $connect = mysqli_connect("127.0.0.1",root,"","MPIT-SquadGame-2022");
 $query = "SELECT * FROM Users WHERE id='{$_SESSION['id']}'";
-$course = "SELECT * FROM Courses";
 $result = mysqli_query($connect, $query);
-$resultCourse = mysqli_query($connect, $course);
 $stroka = $result->fetch_assoc();
+if ($_SESSION['id']==null) {
+	$_SESSION['RegAndSign'] == 1;
+	header("Location: indexRegAndSign.php");
+}
  ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +24,7 @@ $stroka = $result->fetch_assoc();
 </head>
 <body>
 	<!-- ======= Header ======= -->
-	<header id="header" class="fixed-top col-12 border-bottom" style="height: 8vh; background: white;">
+	<header id="header" class="fixed-top col-12 border-bottom" style="height: 8vh; background: white">
 		<div class="col-12	">
 			<div class="row" style="margin-left: 0; margin-right: 0;">
 				<!-- Колонка логотипа -->
@@ -34,7 +36,7 @@ $stroka = $result->fetch_assoc();
 				<div class="col-9" style="height: 8vh; padding-top: 2vh;">
 					<div class="row" style="margin-left: 0; margin-right: 0;">
 						<div class="col-3 text-center">
-							<a href="index.php" class="text-dark" style="text-decoration: none; font-size: 1.3vw">Главная</a>
+							<a href="catalog.php" class="text-dark" style="text-decoration: none; font-size: 1.3vw">Каталог</a>
 						</div>
 						<div class="col-3 text-center">
 							<a href="indexCreate.php" class="text-dark" style="text-decoration: none; font-size: 1.3vw">Создать курс</a>
@@ -53,56 +55,30 @@ $stroka = $result->fetch_assoc();
 						<h4><a href="logOut.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Выход</a></h4>
 						<h4 style="margin-left: 2vw"><a href="function.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;"><?php echo $stroka['Login'] ?></a></h4>
 					<?php } else {?>
-						<h4><a href="checkReg.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Зарегистрироваться</a></h4>
-						<h4 style="margin-left: 2vw"><a href="checkSign.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Войти</a></h4>
+						<h4><a href="checkSign.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Войти</a></h4>
+						<h4 style="margin-left: 2vw"><a href="checkReg.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Зарегестрироваться</a></h4>
 					<?php } ?>
 				</div>
 			</div>
 		</div>
 	</header>
 	<!-- End Header -->
-	<!-- ======= Main content ======= -->
-	<div class="col-12 MainBlock" style="margin-bottom: 41vh; margin-top: 10vh;">
-		<div class="row">
-			<div class="col-3 fixed-top" style="padding-top: 2.5vh; display: block; top: 8vh;">
-				<div class="col-9 mx-auto" style="height: 71vh; background: #C4C4C4; background: linear-gradient(to top, #9DADAD,#BFBBB7); padding-left: 1vw; padding-top: 2vh;">
-					<a href="comingSoonProfile.php" style="text-decoration: none;"><h4 class="text-dark">Мой профиль</h4></a>
-					<a href="comingSoon.php" style="text-decoration: none;"><h4 class="text-dark">Чат</h4></a>
-					<a href="Catalog.php" style="text-decoration: none;"><h4 class="text-dark">Курсы</h4></a>
-					<a href="comingSoon.php" style="text-decoration: none;"><h4 class="text-dark">Рекомендуемое</h4></a>
-				</div>
-			</div>
-			<div class="col-9" style="padding-left: 0; padding-right: 0; margin-left: auto">
-				<div class="col-12" style="padding-bottom: 6.5vh;">
-					<div class="row row-cols-2">
-						<?php 
-							for ($i=0; $i < mysqli_num_rows($resultCourse); $i++) { 
-							$cour = mysqli_fetch_assoc($resultCourse);
-							$author = "SELECT * FROM Users WHERE id='{$cour['UserID']}'";
-							$resultUser = mysqli_query($connect, $author);
-							$avtor = mysqli_fetch_assoc($resultUser)
-						 ?>
-						<div class="col-6 mx-auto mt-4" style="height: 30vh;">
-							<div class="row" style="margin-left: 0; margin-right: 0;">
-								<div class="col-8" style="height: 30vh; background: #939393">
-									<h1><?php echo $cour['Title'] ?></h1>
-									<p><?php echo $cour['Descriptions'] ?></p>
-									<h3><?php echo $avtor['FirstName'] ?></h3>
-								</div>
-								<div class="col-4" style="height: 30vh; background: #C4C4C4; padding-top: 1vh;">
-									<img src="<?php echo $cour['img'] ?>" alt="" style="width: 100%" >
-								</div>
-							</div>
-						</div>
-						<?php } ?>
-					</div>
-				</div>
-			</div>
+	<!-- ======= Main create ======= -->
+	<div class="col-6 mx-auto shadow-lg rounded" style="height: 60vh; margin-top: 16vh;">
+		<div class="col-10 mx-auto" style="padding-top: 5vh; padding-bottom: 5vh;">
+			<form action="create.php" method="post" enctype="multipart/form-data">
+				<h1>Создай свой курс</h1>
+				<p>Путь в тысячу ли начинается с первого шага...</p>
+				<input required name="title" id="name" type="text" class="form-control" placeholder="Название"><br>
+				<textarea required name="description" id="description" type="text" class="form-control" placeholder="Описание"></textarea><br>
+				<input type="file" name="image">
+				<button class="btn shadow-sm" style="margin-top: 2vh;">Создать</button>
+			</form>
 		</div>
 	</div>
-	<!-- End Main content -->
+	<!-- End Main create -->
 	<!-- ======= Footer ======= -->
-	<footer class="col-12 footer" style="height: 20vh; background: #C4C4C4; position: static; bottom: 0;">
+	<div class="col-12" style="height: 20vh; background: #C4C4C4; margin-top: 20vh;">
 		<div class="col-9 mx-auto" style="padding-top: 5vh;">
 			<div class="row">
 				<div class="col-2" style="height: 8vh; padding-top: 1vh;">
@@ -116,15 +92,9 @@ $stroka = $result->fetch_assoc();
 				</div>
 			</div>
 		</div>
-	</footer>
+	</div>
 	<!-- End Footer -->
 	<script type="text/javascript">
-		let MainBlock = document.querySelector(".MainBlock")
-		let footers = document.querySelector(".footers")
-		if (MainBlock.style.height <= 100%) {
-			footers.style.position = 'absolute';
-			footers.style.bottom = 0;
-		}
 		let exit = document.querySelector(".exit")
 		exit.onclick = function(){
 			window.location.href = 'index.php';

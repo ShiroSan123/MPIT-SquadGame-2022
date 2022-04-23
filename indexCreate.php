@@ -29,9 +29,7 @@ if ($_SESSION['id']==null) {
 			<div class="row" style="margin-left: 0; margin-right: 0;">
 				<!-- Колонка логотипа -->
 				<div class="col-1" style="height: 8vh; padding-top: 1vh;">
-					<!-- <img id="logo" class="" src="" id="logoMain" alt="" style="height: 6vh"> -->
-					<div class="col-12 border border-dark exit" style="height: 6vh;"></div>
-				</div>
+					<img id="logo" class="" src="asset/img/logo.svg" id="logoMain" alt="" style="height: 6vh; margin-left: 0.3vw;">				</div>
 				<!-- Средняя колонка -->
 				<div class="col-9" style="height: 8vh; padding-top: 2vh;">
 					<div class="row" style="margin-left: 0; margin-right: 0;">
@@ -53,7 +51,7 @@ if ($_SESSION['id']==null) {
 				<div class="col-2 d-flex" style="height: 8vh; padding-top: 2vh;">
 					<?php if ($_SESSION['id']!=null) { ?>
 						<h4><a href="logOut.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Выход</a></h4>
-						<h4 style="margin-left: 2vw"><a href="function.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;"><?php echo $stroka['Login'] ?></a></h4>
+						<h4 style="margin-left: 2vw"><a href="profile.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;"><?php echo $stroka['Login'] ?></a></h4>
 					<?php } else {?>
 						<h4><a href="checkSign.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Войти</a></h4>
 						<h4 style="margin-left: 2vw"><a href="checkReg.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Зарегестрироваться</a></h4>

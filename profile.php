@@ -2,12 +2,10 @@
 session_start();
 $connect = mysqli_connect("127.0.0.1",root,"","MPIT-SquadGame-2022");
 $query = "SELECT * FROM Users WHERE id='{$_SESSION['id']}'";
-$course = "SELECT * FROM Courses";
 $subQue = "SELECT * FROM Sub WHERE UserID = '{$_SESSION['id']}'";
-$resultSub = mysqli_query($connect, $subQue);
 $result = mysqli_query($connect, $query);
-$resultCourse = mysqli_query($connect, $course);
 $stroka = $result->fetch_assoc();
+$resultSub = mysqli_query($connect, $subQue);
  ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +39,7 @@ $stroka = $result->fetch_assoc();
 							<a href="indexCreate.php" class="text-dark" style="text-decoration: none; font-size: 1.3vw">Создать курс</a>
 						</div>
 						<div class="col-3 text-center">
-							
+							<a href="catalog.php" class="text-dark" style="text-decoration: none; font-size: 1.3vw">Каталог</a>
 						</div>
 						<div class="col-3 text-center">
 							
@@ -68,10 +66,9 @@ $stroka = $result->fetch_assoc();
 			<div class="col-3 fixed-top" style="padding-top: 2.5vh; display: block; top: 8vh;">
 				<div class="col-9 mx-auto" style="height: 71vh; background: #C4C4C4; background: linear-gradient(to top, #9DADAD,#BFBBB7); padding-left: 1vw; padding-top: 2vh;">
 					<?php if ($_SESSION['id']!=null) { ?>
-						<a href="profile.php" style="text-decoration: none;"><h4 class="text-dark">Мой профиль</h4></a>
 						<a href="comingSoon.php" style="text-decoration: none;"><h4 class="text-dark">Чат</h4></a>
 						<a href="Catalog.php" style="text-decoration: none;"><h4 class="text-dark">Курсы</h4></a>
-						<a href="comingSoon.php" style="text-decoration: none;"><h4 class="text-dark">Рекомендуемое</h4></a>
+						<a href="Catalog.php" style="text-decoration: none;"><h4 class="text-dark">Рекомендуемое</h4></a>
 					<?php } else {?>
 						<a href="Catalog.php" style="text-decoration: none;"><h4 class="text-dark">Курсы</h4></a>
 						<a href="comingSoon.php" style="text-decoration: none;"><h4 class="text-dark">Рекомендуемое</h4></a>
@@ -80,46 +77,29 @@ $stroka = $result->fetch_assoc();
 			</div>
 			<div class="col-9" style="padding-left: 0; padding-right: 0; margin-left: auto">
 				<div class="col-12" style="padding-bottom: 6.5vh;">
+					<h2 style="font-size: 2.4vh;"><?php echo "ФИО: ".$stroka['FirstName']." ".$stroka['LastName']." ".$stroka['Patronymic']?></h2>
+					<h2 style="font-size: 2.4vh;"><?php echo "Почта: ".$stroka['Mail']?></h2>
+					<h2 style="font-size: 2.4vh;"><?php echo "Телефон: ".$stroka['Phone']?></h2>
+					<h1>Любимые курсы</h1>
 					<div class="row row-cols-2">
 						<?php 
-							for ($i=0; $i < mysqli_num_rows($resultCourse); $i++) { 
-							$cour = mysqli_fetch_assoc($resultCourse);
+							for ($i=0; $i < mysqli_num_rows($resultSub); $i++) {
+							$Subs = mysqli_fetch_assoc($resultSub);
 							$author = "SELECT * FROM Users WHERE id='{$cour['UserID']}'";
 							$resultUser = mysqli_query($connect, $author);
-							$subQue = "SELECT * FROM Sub WHERE CourseID = '{$cour['id']}'";
-							$resultSub = mysqli_query($connect, $subQue);
-							$Subs = mysqli_fetch_assoc($resultSub);
-							$avtor = mysqli_fetch_assoc($resultUser)
+							$course = "SELECT * FROM Courses WHERE id = '{$Subs['CourseID']}'";
+							$resultCourse = mysqli_query($connect, $course);
+							$cour = mysqli_fetch_assoc($resultCourse);
+							$avtor = mysqli_fetch_assoc($resultUser);
 						 ?>
-						<div class="col-6 mx-auto" style="height: 30vh; margin-top: 2vh;">
+						<div class="col-6 mx-auto mt-4" style="height: 30vh;">
 							<div class="row shadow-sm" style="margin-left: 0; margin-right: 0;">
-								<div class="col-8" style="background: #C4C4C4;height: 30vh;">
-									<div class="col-12 d-flex">
-										<h1><?php echo $cour['Title'] ?></h1>
-										<?php if ($_SESSION['id']!=null) { ?>
-											<?php if ($_SESSION['id']==$Subs['UserID']) { ?>
-												<form action="DelSubscribe.php" method="post" style="margin-left: auto;">
-													<button class="btn" style="height: 4vh; margin-top: 1vh;">Вы подписаны</button>
-												<input type="text" name="courseID" style="display: none;" value="<?php echo $cour['id'] ?>">
-												</form>
-											<?php } else {?>
-												<form action="subscribe.php" method="post" style="margin-left: auto;">
-													<button class="btn" style="height: 4vh; margin-top: 1vh;">Подписаться</button>
-												<input type="text" name="courseID" style="display: none;" value="<?php echo $cour['id'] ?>">
-												</form>
-											<?php } ?>
-										<?php } else { ?>
-											<form action="subscribe.php" method="post" style="margin-left: auto;">
-												<button class="btn" style="height: 4vh; margin-top: 1vh;">Подписаться</button>
-											<input type="text" name="courseID" style="display: none;" value="<?php echo $cour['id'] ?>">
-											</form>
-										<?php } ?>
-									</div>
-									
+								<div class="col-8" style="height: 30vh; background: #C4C4C4">
+									<h1><?php echo $cour['Title'] ?></h1>
 									<p><?php echo $cour['Descriptions'] ?></p>
 									<h3><?php echo $avtor['FirstName'] ?></h3>
 								</div>
-								<div class="col-4" style="background: #939393; padding-top: 1vh;">
+								<div class="col-4" style="height: 30vh; background: #939393; padding-top: 1vh;">
 									<img src="<?php echo $cour['img'] ?>" alt="" style="width: 100%" >
 								</div>
 							</div>

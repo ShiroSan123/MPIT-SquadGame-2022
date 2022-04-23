@@ -31,12 +31,11 @@ $stroka = $result->fetch_assoc();
 		<div class="col-12	">
 			<div class="row" style="margin-left: 0; margin-right: 0;">
 				<!-- Колонка логотипа -->
-				<div class="col-1" style="height: 8vh; padding-top: 1vh;">
-					<!-- <img id="logo" class="" src="" id="logoMain" alt="" style="height: 6vh"> -->
-					<div class="col-12 border border-dark exit" style="height: 6vh;"></div>
+				<div class="col-2" style="height: 8vh; padding-top: 1vh">
+					<img id="logo" class="" src="asset/img/logo.svg" id="logoMain" alt="" style="height: 6vh; margin-left: 0.3vw;">
 				</div>
 				<!-- Средняя колонка -->
-				<div class="col-9" style="height: 8vh; padding-top: 2vh;">
+				<div class="col-8" style="height: 8vh; padding-top: 2vh;">
 					<div class="row" style="margin-left: 0; margin-right: 0;">
 						<div class="col-3 text-center">
 							<a href="catalog.php" class="text-dark" style="text-decoration: none; font-size: 1.3vw">Каталог</a>
@@ -56,7 +55,7 @@ $stroka = $result->fetch_assoc();
 				<div class="col-2 d-flex" style="height: 8vh; padding-top: 2vh;">
 					<?php if ($_SESSION['id']!=null) { ?>
 						<h4><a href="logOut.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Выход</a></h4>
-						<h4 style="margin-left: 2vw"><a href="function.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;"><?php echo $stroka['Login'] ?></a></h4>
+						<h4 style="margin-left: 2vw"><a href="profile.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;"><?php echo $stroka['Login'] ?></a></h4>
 					<?php } else {?>
 						<h4><a href="checkSign.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Войти</a></h4>
 						<h4 style="margin-left: 2vw"><a href="checkReg.php" class="get-started-btn text-dark" style="text-decoration: none; font-size: 0.9vw; font-weight: bold;">Зарегестрироваться</a></h4>
@@ -80,8 +79,10 @@ $stroka = $result->fetch_assoc();
 					<div class="carousel-item active">
 						<div class="row" style="padding-left: 1vw; padding-right: 0; padding-top: 1vh;">
 							<img src="asset/img/banner.svg" class="col-6" alt="First slide">
-							<div class="col-5" style="height: 40vh; background: #939393; opacity: 50%; position: relative; left: -10vw; top: 30vh;">
-								<button onclick="Create()" class="btn create" style="background: #4D433A; color: white; position: absolute; bottom: 5vh; left: 40%;">Создать проект</button>
+							<div class="col-5 text-center" style="height: 40vh; background: #939393; position: relative; left: -10vw; top: 30vh; padding-top: 10vh;">
+								<h4>Lectady</h4>
+								<p class="col-8 mx-auto">Присоединяйся к нам уже прямо сейчас! Собирай средства для создания контента и радуй своих зрителей интересными уроками!</p>
+								<button onclick="Create()" class="btn create" style="background: #4D433A; color: white;">Создать проект</button>
 							</div>
 						</div>
 					</div>
@@ -113,14 +114,18 @@ $stroka = $result->fetch_assoc();
 			</div>
 		</div>
 		<!-- Line -->
-		<div class="col-12 text-center" style="height: 20vh; margin-top: 15vh; background: #C1B1A2">
+		<div class="col-12 text-center" style="height: 20vh; margin-top: 15vh; background: #BFBAB7">
 			<h1>Что такое краудфандинг?</h1>
+			<p class="col-8 mx-auto">- коллективное сотрудничество людей (доноров), которые добровольно объединяют свои деньги или другие ресурсы вместе, как правило, через Интернет, чтобы поддержать усилия других людей или организаций (реципиентов). Сбор средств может служить различным целям — помощи пострадавшим от стихийных бедствий, поддержке со стороны болельщиков, поддержке политических кампаний.</p>
 		</div>
 		<!-- Block -->
 		<div class="col-11 mx-auto" style="height: 60vh; margin-top: 15vh; background: #9DADAD;">
 			<div class="row" style="margin-left: 0; margin-right: 0;">
 				<div class="col-3" style="height: 70vh; position: relative; top: -6vh; left: 1vw; background-image: url(asset/img/right1.png); background-size: 100% 100%;"></div>
-				<div class="col-6" style="height: 70vh;"></div>
+				<div class="col-6 text-center" style="height: 70vh; padding-top: 10	vh;">
+					<h4 class="col-10 mx-auto" style="font-weight:;">Ты блоггер? Преподаешь на бесплатных площадках? У тебя нет средств для создания контента, о котором тебя просят твои зрители? Наш сервис Lectudy поможет тебе! Регестрируйся, собирай средства для создания уроков и выкладывай их прямо сюда!</h4>
+					<h4 class="col-10 mx-auto" style="margin-top: 12vh;">Если ты пользователь, который хочет найти полезные курсы или же помочь создателю с реализацией уроков, то регестрируйся и помогай любимым контент мейкерам!</h4>
+				</div>
 				<div class="col-3" style="height: 70vh; position: relative; top: 6vh; right: 1vw; background-image: url(asset/img/left1.png); background-size: 100% 100%;"></div>
 			</div>
 		</div>

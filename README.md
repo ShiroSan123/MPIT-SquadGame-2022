@@ -18,6 +18,6 @@
 ***
 Языки программирования: PHP, HTML 5, JS, CSS.
 ***
-Хостинг: 
-Login: 
-Password: 
+Хостинг: cx12688.tmweb.ru
+Login: cx12688_ADMIN
+Password: ADMIN123
